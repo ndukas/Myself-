@@ -101,29 +101,30 @@ export interface ClientsSectionProps {
 const Counter: React.FC<{ value: string }> = ({ value }) => {
   const ref = useRef<HTMLSpanElement>(null);
   const counterRef = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "0px" });
 
   // Parse the numeric part and any prefix/suffix
   const numericMatch = value.match(/(\d+\.?\d*)/);
   const number = numericMatch ? parseFloat(numericMatch[0]) : 0;
   const prefix = value.split(numericMatch ? numericMatch[0] : "")[0] || "";
   const suffix = value.split(numericMatch ? numericMatch[0] : "")[1] || "";
+  const isDecimal = value.includes(".");
 
-  const motionValue = useSpring(0, {
+  const motionValue = useMotionValue(0);
+  const springValue = useSpring(motionValue, {
     damping: 60,
     stiffness: 100,
   });
 
+  // Subscribe to spring changes first, then trigger when in view
   useEffect(() => {
-    const isDecimal = value.includes(".");
-
-    return motionValue.on("change", (latest) => {
+    return springValue.on("change", (latest) => {
       if (counterRef.current) {
         const formatted = isDecimal ? latest.toFixed(1) : Math.floor(latest).toString();
         counterRef.current.textContent = `${prefix}${formatted}${suffix}`;
       }
     });
-  }, [motionValue, value, prefix, suffix]);
+  }, [springValue, prefix, suffix, isDecimal]);
 
   useEffect(() => {
     if (isInView) {
@@ -137,6 +138,7 @@ const Counter: React.FC<{ value: string }> = ({ value }) => {
     </span>
   );
 };
+
 
 const StatCard: React.FC<{ value: string; label: string }> = ({ value, label }) => (
   <div className="bg-white/5 backdrop-blur-sm border border-white/10 text-center rounded-2xl p-4 flex flex-col items-center justify-center">
