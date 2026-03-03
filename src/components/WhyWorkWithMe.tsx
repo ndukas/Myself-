@@ -16,12 +16,12 @@ const WhyWorkWithMe = memo(function WhyWorkWithMe() {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 60 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
+        duration: 0.8,
         ease: [0.21, 0.47, 0.32, 0.98],
       },
     },
@@ -30,14 +30,13 @@ const WhyWorkWithMe = memo(function WhyWorkWithMe() {
   return (
     <section className="relative py-32 bg-transparent overflow-hidden">
       <motion.div
-        variants={containerVariants}
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-50px" }}
         className="max-w-7xl mx-auto px-6"
       >
         <motion.div
           variants={itemVariants}
+          whileInView="visible"
+          viewport={{ once: true, margin: "0px 0px -60% 0px" }}
           className="text-center mb-20"
         >
           <div className="inline-block px-4 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs font-medium text-slate-200 mb-6">
@@ -51,9 +50,14 @@ const WhyWorkWithMe = memo(function WhyWorkWithMe() {
           </p>
         </motion.div>
 
-        <div className="space-y-6">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "0px 0px -50% 0px" }}
+          className="space-y-6"
+        >
           <motion.div
-            variants={containerVariants}
             className="grid md:grid-cols-2 gap-6"
           >
             {/* Card 1: Experience */}
@@ -107,7 +111,6 @@ const WhyWorkWithMe = memo(function WhyWorkWithMe() {
 
           {/* Second Row */}
           <motion.div
-            variants={containerVariants}
             className="grid md:grid-cols-2 gap-6"
           >
             {/* Card 4: Solves problems */}
@@ -189,7 +192,7 @@ const WhyWorkWithMe = memo(function WhyWorkWithMe() {
               </div>
             </motion.div>
           </motion.div>
-        </div>
+        </motion.div>
       </motion.div>
     </section>
   );

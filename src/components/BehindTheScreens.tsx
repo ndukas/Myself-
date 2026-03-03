@@ -27,12 +27,12 @@ const FeatureCard = memo(({ card, index, itemVariants }: { card: typeof cards[0]
     whileHover={{
       y: -10,
       scale: 1.02,
-      backgroundColor: "rgba(255, 255, 255, 0.08)"
-    }}
-    transition={{
-      type: "spring",
-      stiffness: 300,
-      damping: 20
+      backgroundColor: "rgba(255, 255, 255, 0.08)",
+      transition: {
+        type: "spring",
+        stiffness: 300,
+        damping: 20
+      }
     }}
     className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-[2.5rem] py-8 px-10 md:py-10 md:px-12 text-center transition-colors duration-300 flex flex-col items-center justify-center min-h-[280px] cursor-default group"
   >
@@ -72,12 +72,12 @@ export default function BehindTheScreens() {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 60 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
+        duration: 0.8,
         ease: [0.21, 0.47, 0.32, 0.98],
       },
     },
@@ -87,13 +87,15 @@ export default function BehindTheScreens() {
     <section ref={sectionRef} className="relative py-32 bg-transparent overflow-hidden">
       <Bubbles />
       <motion.div
-        variants={containerVariants}
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-50px" }}
         className="relative z-10 max-w-7xl mx-auto px-6"
       >
-        <motion.div variants={itemVariants} className="text-center mb-16">
+        <motion.div
+          variants={itemVariants}
+          whileInView="visible"
+          viewport={{ once: true, margin: "0px 0px -50% 0px" }}
+          className="text-center mb-16"
+        >
           <div className="inline-block px-4 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs font-medium text-slate-200 mb-6">
             Essence
           </div>
@@ -107,6 +109,9 @@ export default function BehindTheScreens() {
 
         <motion.div
           variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "0px 0px -60% 0px" }}
           className="grid md:grid-cols-3 gap-8"
         >
           {cards.map((card, index) => (

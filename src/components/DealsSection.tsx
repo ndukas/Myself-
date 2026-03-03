@@ -58,10 +58,10 @@ export default function DealsSection() {
     <section className="w-full py-32 bg-transparent flex flex-col items-center justify-center overflow-hidden">
       <div className="w-full max-w-7xl px-6">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
+          viewport={{ once: true, margin: "0px 0px -30% 0px" }}
+          transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
           className="text-center mb-10"
         >
           <div className="inline-block px-3 py-1 bg-white/10 border border-white/10 rounded-full text-[10px] font-medium text-slate-300 mb-4 uppercase tracking-widest">
@@ -74,18 +74,18 @@ export default function DealsSection() {
             My past projects showcasing my expertise.
           </p>
         </motion.div>
-        
+
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, delay: 0.2, ease: [0.21, 0.47, 0.32, 0.98] }}
+          viewport={{ once: true, margin: "0px 0px -20% 0px" }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.21, 0.47, 0.32, 0.98] }}
           className="relative"
         >
           {/* Gradient masks for smooth edges */}
           <div className="absolute left-0 top-0 bottom-0 w-20 md:w-40 bg-gradient-to-r from-[#0B1120] to-transparent z-10 pointer-events-none" />
           <div className="absolute right-0 top-0 bottom-0 w-20 md:w-40 bg-gradient-to-l from-[#0B1120] to-transparent z-10 pointer-events-none" />
-          
+
           <Marquee speed={60} pauseOnHover={true} className="[--gap:2rem]">
             {sampleOffers.map((offer) => (
               <OfferCard key={offer.id} offer={offer} />

@@ -239,12 +239,12 @@ export const ClientsSection = ({
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 60 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
+        duration: 0.8,
         ease: [0.21, 0.47, 0.32, 0.98],
       },
     },
@@ -256,7 +256,7 @@ export const ClientsSection = ({
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: "-50px" }}
+        viewport={{ once: true, margin: "0px 0px -30% 0px" }}
         className="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start"
       >
 

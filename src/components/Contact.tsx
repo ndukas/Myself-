@@ -49,10 +49,10 @@ export default function Contact() {
       <div className="max-w-3xl mx-auto flex flex-col items-center text-center">
         {/* Header Section */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
+          viewport={{ once: true, margin: "0px 0px -30% 0px" }}
+          transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
           className="mb-12 flex flex-col items-center"
         >
           <div className="inline-block px-5 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs font-medium text-zinc-300 mb-8">
@@ -101,10 +101,10 @@ export default function Contact() {
 
         {/* Form Section */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, delay: 0.2, ease: [0.21, 0.47, 0.32, 0.98] }}
+          viewport={{ once: true, margin: "0px 0px -20% 0px" }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.21, 0.47, 0.32, 0.98] }}
           className="w-full max-w-xl bg-white/5 backdrop-blur-md p-6 md:p-10 rounded-[2rem] border border-white/10"
         >
           <h3 className="text-xl md:text-2xl font-bold mb-8 text-white">
