@@ -30,7 +30,7 @@ export default function SplashScreen({ onComplete }: { onComplete: () => void })
         >
           <div className="relative flex flex-col items-center">
             <AppleHelloEnglishEffect
-              speed={1.2}
+              speed={1.8}
               className="h-24 md:h-32 text-white"
             />
           </div>
