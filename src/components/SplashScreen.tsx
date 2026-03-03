@@ -13,7 +13,7 @@ export default function SplashScreen({ onComplete }: { onComplete: () => void })
       setTimeout(() => {
         onComplete();
       }, 250);
-    }, 2500);
+    }, 1700);
     return () => {
       clearTimeout(timer);
     };
@@ -30,7 +30,7 @@ export default function SplashScreen({ onComplete }: { onComplete: () => void })
         >
           <div className="relative flex flex-col items-center">
             <AppleHelloEnglishEffect
-              speed={1.8}
+              speed={2.1}
               className="h-24 md:h-32 text-white"
             />
           </div>
