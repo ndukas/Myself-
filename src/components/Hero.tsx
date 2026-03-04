@@ -62,6 +62,7 @@ export default function Hero({ isDark }: { isDark: boolean }) {
   const textOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
   const textY = useTransform(scrollYProgress, [0, 1], isMobile ? ["0%", "0%"] : ["0%", "-40%"]);
   const imageScale = useTransform(scrollYProgress, [0, 1], isMobile ? [1, 1] : [1, 0.95]);
+  const imageOpacity = useTransform(scrollYProgress, [0, 0.5], isMobile ? [1, 0] : [1, 1]);
   const sectionScale = useTransform(scrollYProgress, [0, 1], [1, 0.98]);
   const statsY = useTransform(scrollYProgress, [0, 1], isMobile ? ["0%", "0%"] : ["0%", "-20%"]);
 
@@ -69,7 +70,7 @@ export default function Hero({ isDark }: { isDark: boolean }) {
     ? "linear-gradient(90deg, #1E3A8A, #60A5FA, #1E3A8A)"
     : "linear-gradient(90deg, #DBEAFE, #3B82F6, #DBEAFE)";
 
-  const textSizeClass = "text-[16vw] md:text-[14vw] lg:text-[12vw] font-bold tracking-tighter";
+  const textSizeClass = "text-[13vw] md:text-[14vw] lg:text-[12vw] font-bold tracking-tighter";
 
   return (
     <motion.section
@@ -80,7 +81,7 @@ export default function Hero({ isDark }: { isDark: boolean }) {
       className="relative min-h-[100dvh] flex flex-col items-center justify-center overflow-hidden"
     >
       {/* Huge Background Text */}
-      <div className="absolute md:fixed inset-0 flex flex-col items-center justify-center pointer-events-none select-none overflow-hidden -translate-y-[25vh] md:-translate-y-[30vh] lg:-translate-y-[34vh] z-0 px-4">
+      <div className="absolute md:fixed inset-x-0 top-[15%] md:top-0 md:inset-0 flex flex-col items-center md:justify-center pointer-events-none select-none overflow-hidden md:-translate-y-[30vh] lg:-translate-y-[34vh] z-0 px-4">
         <motion.div style={{ opacity: textOpacity, y: textY }} className="w-full text-center">
           <AnimatePresence mode="wait">
             <motion.div
@@ -92,7 +93,7 @@ export default function Hero({ isDark }: { isDark: boolean }) {
               className="w-full flex items-center justify-center"
             >
               {words[wordIndex] === "Problem Solver" ? (
-                <div className="flex flex-col md:flex-row items-center justify-center">
+                <div className="flex flex-row items-center justify-center">
                   <div className="relative">
                     <AnimatedText
                       text="Problem"
@@ -115,7 +116,7 @@ export default function Hero({ isDark }: { isDark: boolean }) {
                   <AnimatedText
                     text="Solver"
                     gradientColors={gradientColors}
-                    className="py-0 md:ml-4"
+                    className="py-0 ml-2 md:ml-4"
                     textClassName={textSizeClass}
                   />
                 </div>
@@ -134,8 +135,8 @@ export default function Hero({ isDark }: { isDark: boolean }) {
 
       {/* Main Subject Image — z-50 to ensure visibility */}
       <motion.div
-        style={{ scale: imageScale, y: backgroundY }}
-        className="absolute -bottom-12 z-50 w-full max-w-4xl lg:max-w-5xl h-[90vh] md:h-[95vh] flex items-end justify-center pointer-events-none"
+        style={{ scale: imageScale, y: backgroundY, opacity: imageOpacity }}
+        className="absolute bottom-0 md:-bottom-12 z-50 w-full max-w-4xl lg:max-w-5xl h-[65vh] sm:h-[65vh] md:h-[95vh] flex items-end justify-center pointer-events-none"
       >
         <div className="relative w-full h-full flex items-end justify-center">
           <img
@@ -144,7 +145,7 @@ export default function Hero({ isDark }: { isDark: boolean }) {
             width="721"
             height="895"
             fetchPriority="high"
-            className="h-full w-auto object-contain object-bottom"
+            className="translate-y-[8%] md:translate-y-0 w-full h-auto md:h-full md:w-auto object-contain object-bottom"
           />
         </div>
       </motion.div>
@@ -156,6 +157,8 @@ export default function Hero({ isDark }: { isDark: boolean }) {
       >
         <HeroStats isDark={isDark} />
       </motion.div>
+
+      {/* Bottom fade gradient removed because it caused a dark gap and image fades on scroll anyway */}
 
       {/* Ambient Glows */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
