@@ -18,6 +18,11 @@
   }
 }
 
+@keyframes shimmer-gradient {
+  from { background-position: 0% 0; }
+  to { background-position: 100% 0; }
+}
+
 body {
   @apply bg-[#0B1120] text-white;
 }

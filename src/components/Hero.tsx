@@ -42,8 +42,13 @@ export default function Hero({ isDark }: { isDark: boolean }) {
   const [isMobile, setIsMobile] = useState(false);
   const words = ["Designer", "Developer", "Problem Solver"];
 
+  // Use matchMedia for accurate and responsive mobile detection
   useEffect(() => {
-    setIsMobile(window.innerWidth < 768);
+    const mq = window.matchMedia('(max-width: 767px)');
+    setIsMobile(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
   }, []);
 
   useEffect(() => {
@@ -58,13 +63,14 @@ export default function Hero({ isDark }: { isDark: boolean }) {
     offset: ["start start", "end start"]
   });
 
-  const backgroundY = useTransform(scrollYProgress, [0, 1], isMobile ? ["0%", "0%"] : ["0%", "25%"]);
+  // Desktop-only scroll transforms (mobile gets static values to avoid wasted calculations)
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
   const textOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
-  const textY = useTransform(scrollYProgress, [0, 1], isMobile ? ["0%", "0%"] : ["0%", "-40%"]);
-  const imageScale = useTransform(scrollYProgress, [0, 1], isMobile ? [1, 1] : [1, 0.95]);
-  const imageOpacity = useTransform(scrollYProgress, [0, 0.5], isMobile ? [1, 0] : [1, 1]);
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "-40%"]);
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
+  const imageOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const sectionScale = useTransform(scrollYProgress, [0, 1], [1, 0.98]);
-  const statsY = useTransform(scrollYProgress, [0, 1], isMobile ? ["0%", "0%"] : ["0%", "-20%"]);
+  const statsY = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
 
   const gradientColors = isDark
     ? "linear-gradient(90deg, #1E3A8A, #60A5FA, #1E3A8A)"
@@ -76,13 +82,11 @@ export default function Hero({ isDark }: { isDark: boolean }) {
     <motion.section
       ref={ref}
       style={{ scale: sectionScale }}
-      animate={{ backgroundColor: isDark ? "#05070A" : "#ffffff" }}
-      transition={{ duration: 0.9, ease: "easeInOut" }}
-      className="relative min-h-[100dvh] flex flex-col items-center justify-center overflow-hidden"
+      className={`relative min-h-[100dvh] flex flex-col items-center justify-center overflow-hidden transition-colors duration-900 ${isDark ? 'bg-[#05070A]' : 'bg-white'}`}
     >
       {/* Huge Background Text */}
       <div className="absolute md:fixed inset-x-0 top-[15%] md:top-0 md:inset-0 flex flex-col items-center md:justify-center pointer-events-none select-none overflow-hidden md:-translate-y-[30vh] lg:-translate-y-[34vh] z-0 px-4">
-        <motion.div style={{ opacity: textOpacity, y: textY }} className="w-full text-center">
+        <motion.div style={{ opacity: textOpacity, y: isMobile ? undefined : textY }} className="w-full text-center">
           <AnimatePresence mode="wait">
             <motion.div
               key={words[wordIndex]}
@@ -135,8 +139,12 @@ export default function Hero({ isDark }: { isDark: boolean }) {
 
       {/* Main Subject Image — z-50 to ensure visibility */}
       <motion.div
-        style={{ scale: imageScale, y: backgroundY, opacity: imageOpacity }}
-        className="absolute bottom-0 md:-bottom-12 z-50 w-full max-w-4xl lg:max-w-5xl h-[65vh] sm:h-[65vh] md:h-[95vh] flex items-end justify-center pointer-events-none"
+        style={{
+          scale: isMobile ? undefined : imageScale,
+          y: isMobile ? undefined : backgroundY,
+          opacity: imageOpacity,
+        }}
+        className="absolute bottom-0 md:-bottom-12 z-50 w-full max-w-4xl lg:max-w-5xl h-[65vh] sm:h-[65vh] md:h-[95vh] flex items-end justify-center pointer-events-none will-change-transform"
       >
         <div className="relative w-full h-full flex items-end justify-center">
           <img
@@ -152,7 +160,7 @@ export default function Hero({ isDark }: { isDark: boolean }) {
 
       {/* Floating Stats - Positioned to the right of the subject, aligned with Header Connect button */}
       <motion.div
-        style={{ opacity: textOpacity, y: statsY }}
+        style={{ opacity: textOpacity, y: isMobile ? undefined : statsY }}
         className="hidden md:flex absolute right-4 lg:right-8 top-[20%] lg:top-[25%] z-30 flex-col gap-8 lg:gap-14 text-right pointer-events-auto"
       >
         <HeroStats isDark={isDark} />
@@ -164,9 +172,11 @@ export default function Hero({ isDark }: { isDark: boolean }) {
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
         <div
           className={`absolute -top-[20%] -left-[10%] w-[60%] h-[60%] blur-[150px] rounded-full ${isDark ? "bg-blue-900/20" : "bg-blue-100/40"}`}
+          style={{ transform: 'translateZ(0)' }}
         />
         <div
           className={`absolute top-[20%] -right-[10%] w-[40%] h-[40%] blur-[150px] rounded-full ${isDark ? "bg-orange-900/10" : "bg-orange-100/20"}`}
+          style={{ transform: 'translateZ(0)' }}
         />
       </div>
     </motion.section>

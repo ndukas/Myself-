@@ -169,6 +169,8 @@ const StickyTestimonialCard: React.FC<{ testimonial: Testimonial; index: number 
             <img
               src={testimonial.avatarSrc}
               alt={testimonial.name}
+              width="64"
+              height="64"
               loading="lazy"
               decoding="async"
               className="w-full h-full object-cover"

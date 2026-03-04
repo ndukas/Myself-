@@ -23,10 +23,20 @@ export default defineConfig(({ mode }) => {
     build: {
       rollupOptions: {
         output: {
-          manualChunks: {
-            'react-vendor': ['react', 'react-dom'],
-            'motion-vendor': ['motion'],
-            'router': ['react-router-dom'],
+          manualChunks(id) {
+            if (id.includes('node_modules/react-dom') || id.includes('node_modules\\react-dom')) {
+              return 'react-vendor';
+            }
+            if (id.includes('node_modules/react/') || id.includes('node_modules\\react\\')) {
+              return 'react-vendor';
+            }
+            if (id.includes('node_modules/react-router') || id.includes('node_modules\\react-router')) {
+              return 'router';
+            }
+            if (id.includes('node_modules/motion') || id.includes('node_modules\\motion') ||
+              id.includes('node_modules/framer-motion') || id.includes('node_modules\\framer-motion')) {
+              return 'motion-vendor';
+            }
           },
         },
       },

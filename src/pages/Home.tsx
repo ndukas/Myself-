@@ -19,11 +19,21 @@ export default function Home({ isDark }: { isDark: boolean }) {
       </Helmet>
       <Hero isDark={isDark} />
       <Suspense fallback={<div className="h-96 flex items-center justify-center text-slate-500">Loading...</div>}>
-        <BehindTheScreens />
-        <WhyWorkWithMe />
-        <DealsSection />
-        <ClientsSectionDemo />
-        <Contact />
+        <div style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 900px' }}>
+          <BehindTheScreens />
+        </div>
+        <div style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 800px' }}>
+          <WhyWorkWithMe />
+        </div>
+        <div style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 600px' }}>
+          <DealsSection />
+        </div>
+        <div style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 1200px' }}>
+          <ClientsSectionDemo />
+        </div>
+        <div style={{ contentVisibility: 'auto', containIntrinsicSize: 'auto 800px' }}>
+          <Contact />
+        </div>
         <Footer />
       </Suspense>
     </main>

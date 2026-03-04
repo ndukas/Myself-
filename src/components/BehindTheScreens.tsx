@@ -46,7 +46,7 @@ const FeatureCard = memo(({ card, index, itemVariants }: { card: typeof cards[0]
         ease: "easeInOut",
         delay: index * 0.5
       }}
-      className="mb-6 group-hover:scale-110 transition-transform duration-300"
+      className="mb-6 group-hover:scale-110 transition-transform duration-300 will-change-transform"
     >
       {card.icon}
     </motion.div>

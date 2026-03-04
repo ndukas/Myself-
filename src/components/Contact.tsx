@@ -70,6 +70,7 @@ export default function Contact() {
             <div className="flex flex-col items-center gap-3">
               <a
                 href="mailto:samonduka19@gmail.com"
+                aria-label="Send email"
                 className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-white flex items-center justify-center hover:scale-110 transition-transform shadow-[0_0_20px_rgba(255,255,255,0.1)]"
               >
                 <Mail size={24} className="text-black" />
@@ -79,6 +80,7 @@ export default function Contact() {
             <div className="flex flex-col items-center gap-3">
               <a
                 href="tel:+421950280922"
+                aria-label="Call phone"
                 className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-white flex items-center justify-center hover:scale-110 transition-transform shadow-[0_0_20px_rgba(255,255,255,0.1)]"
               >
                 <Phone size={24} className="text-black" />
@@ -90,6 +92,7 @@ export default function Contact() {
                 data-cal-link="samuel.nduka/15min"
                 data-cal-namespace="15min"
                 data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":"auto"}'
+                aria-label="Book a meeting"
                 className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-white flex items-center justify-center hover:scale-110 transition-transform shadow-[0_0_20px_rgba(255,255,255,0.1)] cursor-pointer"
               >
                 <CalendarIcon size={24} className="text-black" />

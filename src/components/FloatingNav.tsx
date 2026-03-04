@@ -36,13 +36,13 @@ export default function FloatingNav() {
   }, []);
 
   return (
-    <div 
+    <div
       className={cn(
         "fixed bottom-8 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ease-in-out transform",
         isVisible ? "translate-y-0 opacity-100" : "translate-y-24 opacity-0 pointer-events-none"
       )}
     >
-      <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md p-2 rounded-full shadow-2xl border border-white/10">
+      <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md p-2 rounded-full shadow-2xl border border-white/10 will-change-transform">
         {navItems.map((item) => {
           const isActive = location.pathname === item.href;
           return (

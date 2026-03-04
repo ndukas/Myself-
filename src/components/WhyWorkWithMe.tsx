@@ -100,7 +100,7 @@ const WhyWorkWithMe = memo(function WhyWorkWithMe() {
                   src="https://ridbtuorcmkjidenxudx.supabase.co/storage/v1/render/image/public/Public%20main/teams-avatar.webp?width=455&height=290&quality=80"
                   alt="Teams Avatar"
                   width="340"
-                  height="auto"
+                  height="217"
                   loading="lazy"
                   decoding="async"
                   className="w-[340px] h-auto object-contain filter drop-shadow-2xl transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500"
@@ -126,7 +126,7 @@ const WhyWorkWithMe = memo(function WhyWorkWithMe() {
               </div>
               <div className="mt-auto relative z-10 flex items-end justify-center w-full" style={{ height: '200px' }}>
                 <img
-                  src="https://ridbtuorcmkjidenxudx.supabase.co/storage/v1/render/image/public/Public%20main/mobile-app-showcase.webp?width=632&height=367&quality=80"
+                  src="https://ridbtuorcmkjidenxudx.supabase.co/storage/v1/render/image/public/Public%20main/mobile-app-showcase.webp?width=467&height=271&quality=80"
                   alt="Mobile App Showcase"
                   width="632"
                   height="367"
@@ -153,7 +153,7 @@ const WhyWorkWithMe = memo(function WhyWorkWithMe() {
                 {/* High quality 3D Avatar */}
                 <div className="absolute bottom-[-30px] left-[-30px] w-[200px] md:w-[240px] z-0">
                   <img
-                    src="https://ridbtuorcmkjidenxudx.supabase.co/storage/v1/render/image/public/Public%20main/milestones-avatar.webp?width=480&height=480&quality=75"
+                    src="https://ridbtuorcmkjidenxudx.supabase.co/storage/v1/render/image/public/Public%20main/milestones-avatar.webp?width=350&height=350&quality=75"
                     alt="Waving Avatar"
                     width="240"
                     height="240"

@@ -25,7 +25,7 @@ const Bubbles = memo(function Bubbles() {
             ease: "linear",
             delay: Math.random() * 10,
           }}
-          className="absolute w-16 h-16 bg-blue-500/10 rounded-full blur-2xl"
+          className="absolute w-16 h-16 bg-blue-500/10 rounded-full blur-2xl will-change-transform"
         />
       ))}
     </div>

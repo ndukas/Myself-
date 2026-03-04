@@ -28,10 +28,11 @@ export const Marquee = ({
   // Calculate content width for seamless loop
   React.useEffect(() => {
     if (containerRef.current) {
-      // The first child of the motion.div is one set of children
       const firstSet = containerRef.current.firstElementChild as HTMLElement;
       if (firstSet) {
-        setContentWidth(firstSet.offsetWidth);
+        requestAnimationFrame(() => {
+          setContentWidth(firstSet.getBoundingClientRect().width);
+        });
       }
     }
   }, [children]);

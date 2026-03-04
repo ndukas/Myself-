@@ -1,5 +1,4 @@
 import * as React from "react";
-import { motion, Variants } from "motion/react";
 import { cn } from "@/lib/utils";
 
 interface AnimatedTextProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -26,27 +25,13 @@ const AnimatedText = React.forwardRef<HTMLDivElement, AnimatedTextProps>(
   ) => {
     const [isHovered, setIsHovered] = React.useState(false);
 
-    const textVariants: Variants = {
-      initial: {
-        backgroundPosition: "0 0",
-      },
-      animate: {
-        backgroundPosition: "100% 0",
-        transition: {
-          duration: gradientAnimationDuration,
-          repeat: Infinity,
-          repeatType: "reverse" as const,
-        },
-      },
-    };
-
     return (
       <div
         ref={ref}
         className={cn("flex justify-center items-center py-8", className)}
         {...props}
       >
-        <motion.h1
+        <h1
           className={cn("leading-none", textClassName)}
           style={{
             background: gradientColors,
@@ -54,15 +39,13 @@ const AnimatedText = React.forwardRef<HTMLDivElement, AnimatedTextProps>(
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             textShadow: isHovered ? "0 0 8px rgba(255,255,255,0.3)" : "none",
+            animation: `shimmer-gradient ${gradientAnimationDuration}s linear infinite alternate`,
           }}
-          variants={textVariants}
-          initial="initial"
-          animate="animate"
-          onHoverStart={() => hoverEffect && setIsHovered(true)}
-          onHoverEnd={() => hoverEffect && setIsHovered(false)}
+          onMouseEnter={() => hoverEffect && setIsHovered(true)}
+          onMouseLeave={() => hoverEffect && setIsHovered(false)}
         >
           {text}
-        </motion.h1>
+        </h1>
       </div>
     );
   }
